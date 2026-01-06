@@ -38,7 +38,7 @@ const games = [
             </b>
         </div>
 
-        <div class="grid grid-cols-3 lg:grid-cols-6 gap-5">
+        <div class="grid grid-cols-3 lg:grid-cols-6 gap-4">
             <div v-for="game in games" :key="game.name" class="card-game">
                 <img :src="game.img_url" class="w-full aspect-square object-cover" alt="" />
                 <div class="px-2 lg:px-3 py-2">
