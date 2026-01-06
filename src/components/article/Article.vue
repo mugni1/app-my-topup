@@ -36,7 +36,7 @@ const onSlideChange = () => {
                 1024: { slidesPerView: 3 },
                 1420: { slidesPerView: 4 },
             }">
-            <SwiperSlide v-for="i in 4" :key="i" class="py-6">
+            <SwiperSlide v-for="i in 4" :key="i" class="py-4">
                 <div class="card-article group">
                     <div
                         class="aspect-[12/16] transition-all duration-300 group-hover:scale-105 w-full mask mask-b-from-0% mask-b-to-70% bg-top bg-[url('https://news.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Fnews%2Fgallery%2F4.%20Akun%20Sultan%20FF.jpg&w=1080&q=75')]">
