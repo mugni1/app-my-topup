@@ -36,7 +36,7 @@ const onSlideChange = () => {
 </script>
 
 <template>
-    <section class="pt-24 pb-10 lg:pt-35 mx-auto container px-4">
+    <section class="pt-24 pb-5 lg:pt-35 mx-auto container px-4">
         <Swiper :navigation="navigation" :mousewheel="true" :keyboard="true" :modules="modules" :space-between="0"
             :autoplay="{
                 delay: 5000,
@@ -45,7 +45,7 @@ const onSlideChange = () => {
             class="rounded-md overflow-hidden shadow-md border">
 
             <!-- SLIDE  -->
-            <SwiperSlide v-for="(image, index) in images" :key="image">
+            <SwiperSlide v-for="(image, index) in images" :key="index">
                 <img class="w-full aspect-video lg:aspect-[9/3.4] object-cover object-center" :src="image.url"
                     :alt="'image' + index">
             </SwiperSlide>
