@@ -2,6 +2,8 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules'
 import { Separator } from '../ui/separator'
+import { Newspaper } from 'lucide-vue-next'
+
 const modules = [Navigation, Pagination, Scrollbar, A11y]
 
 const onSwiper = (swiper: any) => {
@@ -17,7 +19,9 @@ const onSlideChange = () => {
 <template>
     <section class="py-10 mx-auto container px-4">
         <div class="w-full lg:w-6/12 flex flex-col gap-1">
-            <b class="title">NEW ARTICLE & NEWS GAME</b>
+            <b class="title">
+                <Newspaper class="size-5" /> NEW ARTICLE & NEWS GAME
+            </b>
             <p class="description">
                 Dapatkan informasi terbaru seputar dunia game! Temukan panduan lengkap untuk meningkatkan pengalaman
                 bermain,
@@ -61,7 +65,7 @@ const onSlideChange = () => {
 @import "../../assets/main.css";
 
 .title {
-    @apply text-base font-medium;
+    @apply text-base font-medium flex gap-2 items-center;
 }
 
 .description {
