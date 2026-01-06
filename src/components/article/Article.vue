@@ -29,9 +29,9 @@ const onSlideChange = () => {
             </p>
         </div>
 
-        <Swiper :modules="modules" :slides-per-view="3" :space-between="30" @swiper="onSwiper"
+        <Swiper :modules="modules" :slides-per-view="3" :space-between="20" @swiper="onSwiper"
             @slideChange="onSlideChange" loop :breakpoints="{
-                0: { slidesPerView: 1.6 },
+                0: { slidesPerView: 1.3 },
                 640: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
                 1420: { slidesPerView: 4 },
