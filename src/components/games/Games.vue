@@ -41,9 +41,9 @@ const games = [
         <div class="grid grid-cols-3 lg:grid-cols-6 gap-5">
             <div v-for="game in games" :key="game.name" class="card-game">
                 <img :src="game.img_url" class="w-full aspect-square object-cover" alt="" />
-                <div class="px-3 py-2">
-                    <b class="text-sm font-medium lg:text-base line-clamp-1">{{ game.name }}</b>
-                    <p class="text-xs font-normal">{{ game.studio }}</p>
+                <div class="px-2 lg:px-3 py-2">
+                    <b class="text-xs font-medium lg:text-base line-clamp-1">{{ game.name }}</b>
+                    <p class="text-xs text-muted-foreground font-normal">{{ game.studio }}</p>
                 </div>
             </div>
         </div>
