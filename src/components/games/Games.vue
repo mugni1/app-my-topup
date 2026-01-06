@@ -43,7 +43,7 @@ const games = [
                 <img :src="game.img_url" class="w-full aspect-square object-cover" alt="" />
                 <div class="px-2 lg:px-3 py-2">
                     <b class="text-xs font-medium lg:text-base line-clamp-1">{{ game.name }}</b>
-                    <p class="text-xs text-muted-foreground font-normal">{{ game.studio }}</p>
+                    <p class="text-xs text-muted-foreground font-normal line-clamp-1">{{ game.studio }}</p>
                 </div>
             </div>
         </div>
