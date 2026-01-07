@@ -1,11 +1,9 @@
 <script setup lang="ts">
-  import { CalendarClockIcon, LogIn, Scale, ShoppingBag } from 'lucide-vue-next'
-  import { Button } from '../ui/button'
   import ChangeToggleMode from '../mode/ChangeToggleMode.vue'
-  import BurgerToggle from './BurgerToggle.vue'
+  import ToggleBurger from './ToggleBurger.vue'
   import { ref } from 'vue'
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
-  import SearchToggle from './SearchToggle.vue'
+  import ToggleSearch from './ToggleSearch.vue'
   import NavbarSearchPhone from './NavbarSearchPhone.vue'
   import { Separator } from '../ui/separator'
   import { data } from './data'
@@ -39,12 +37,12 @@
         <NavbarSearchLarge />
         <div class="space-x-2 relative flex items-center overflow-hidden">
           <ChangeToggleMode />
-          <SearchToggle
+          <ToggleSearch
             class="lg:hidden"
             v-model="isSearch"
             @change-is-search="handleChangeIsSearch"
           />
-          <BurgerToggle
+          <ToggleBurger
             class="lg:hidden"
             v-model="isOpen"
             @change-is-open="handleChangeIsOpen"
