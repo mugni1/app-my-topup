@@ -4,19 +4,33 @@
   import { LogIn } from 'lucide-vue-next'
   import { Separator } from '../ui/separator'
   import { data } from './data'
-  import { useRouter } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
+  import { watch } from 'vue'
 
-  const isOpen = defineModel<boolean>()
+  // state
   const router = useRouter()
+  const route = useRoute()
+  const isOpen = defineModel<boolean>()
+
+  // methods
+  const redirectTo = (value: string) => {
+    isOpen.value = false
+    router.push(value)
+  }
+
+  // watcher
+  watch(
+    () => route.path,
+    () => {
+      isOpen.value = false
+    }
+  )
 </script>
 
 <template>
   <motion.section
-    :class="
-      isOpen
-        ? 'fixed inset-0 z-40 px-4 lg:hidden backdrop-blur-sm transition-all duration-200'
-        : 'invisible fixed inset-0 z-40 px-4 lg:hidden transition-all duration-200'
-    "
+    @click.self="isOpen = false"
+    :class="isOpen ? 'container-open' : 'container-close'"
   >
     <motion.div
       class="container mx-auto bg-popover border rounded-md mt-24 p-4 space-y-4"
@@ -28,7 +42,7 @@
         v-for="link in data.links"
         class="w-full"
         :variant="$route.path == link.href ? 'link' : 'default_link'"
-        @click="router.push(link.href)"
+        @click="redirectTo(link.href)"
       >
         <component :is="link.icon" /> {{ link.name }}
       </Button>
@@ -39,3 +53,15 @@
     </motion.div>
   </motion.section>
 </template>
+
+<style scoped>
+  @import '../../assets/main.css';
+
+  .container-open {
+    @apply fixed inset-0 z-40 px-4 lg:hidden backdrop-blur-sm transition-all duration-200;
+  }
+
+  .container-close {
+    @apply invisible fixed inset-0 z-40 px-4 lg:hidden transition-all duration-200;
+  }
+</style>

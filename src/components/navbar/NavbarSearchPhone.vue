@@ -4,17 +4,26 @@
   import { Search, SearchSlashIcon } from 'lucide-vue-next'
   import { Separator } from '../ui/separator'
   import { InputGroup, InputGroupAddon, InputGroupInput } from '../ui/input-group'
+  import { watch } from 'vue'
+  import { useRoute } from 'vue-router'
 
+  // state
   const isSearch = defineModel<boolean>()
+  const route = useRoute()
+
+  // watcher
+  watch(
+    () => route.path,
+    () => {
+      isSearch.value = false
+    }
+  )
 </script>
 
 <template>
   <motion.section
-    :class="
-      isSearch
-        ? 'fixed inset-0 z-40 px-4 lg:hidden backdrop-blur-sm transition-all duration-200'
-        : 'invisible fixed inset-0 z-40 px-4 lg:hidden transition-all duration-200'
-    "
+    @click.self="isSearch = false"
+    :class="isSearch ? 'container-open' : 'container-close'"
   >
     <motion.div
       class="container mx-auto bg-popover border rounded-md mt-24 p-4 space-y-4"
@@ -35,3 +44,15 @@
     </motion.div>
   </motion.section>
 </template>
+
+<style scoped>
+  @import '../../assets/main.css';
+
+  .container-open {
+    @apply fixed inset-0 z-40 px-4 lg:hidden backdrop-blur-sm transition-all duration-200;
+  }
+
+  .container-close {
+    @apply invisible fixed inset-0 z-40 px-4 lg:hidden transition-all duration-200;
+  }
+</style>
