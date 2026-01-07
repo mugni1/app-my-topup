@@ -15,11 +15,41 @@
         />
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-6 gap-8">
-        <div class="space-y-4 col-span-2 lg:col-span-3">
+        <div class="space-y-8 col-span-2 lg:col-span-3">
           <p class="font-normal text-sm">
             No #1 supplier top up game & voucher terlaris, murah, aman legal 100% buka 24
             Jam dengan channel pembayaran terlengkap Indonesia.
           </p>
+          <div class="flex gap-8">
+            <img
+              class="size-6"
+              src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Ff6a1857c-6ced-41ab-99fb-2340b2dbe09c.webp&w=32&q=75"
+              alt=""
+            />
+            <img
+              class="size-6"
+              src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F8f4f6f16-4763-4733-a595-c37c9aae94f1.webp&w=32&q=75"
+              alt=""
+            />
+            <img
+              class="size-6"
+              src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F509573ad-c36d-467e-884a-72a984a95330.webp&w=32&q=75"
+              alt=""
+            />
+            <img
+              class="size-6"
+              src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Ff233c760-d50d-40f6-a425-800559888c18.webp&w=32&q=75"
+              alt=""
+            />
+          </div>
+          <div class="space-y-1">
+            <p class="text-sm font-normal">Download BANGJEFF Mobile App on:</p>
+            <img
+              class="h-8"
+              src="https://www.bangjeff.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgoogle-play-android.4acd875c.png&w=128&q=75"
+              alt=""
+            />
+          </div>
         </div>
         <div class="gap-4 flex flex-col col-span-1 lg:col-span-1">
           <b class="text-primary">Partnership</b>
