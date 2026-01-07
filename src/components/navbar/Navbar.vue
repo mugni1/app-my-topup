@@ -7,6 +7,7 @@
   import { ref } from 'vue'
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
   import SearchToggle from './SearchToggle.vue'
+  import NavbarSearchPhone from './NavbarSearchPhone.vue'
 
   // state
   const isOpen = ref(false)
@@ -74,4 +75,5 @@
   </header>
 
   <NavbarMenuPhone v-model="isOpen" />
+  <NavbarSearchPhone v-model="isSearch" />
 </template>
