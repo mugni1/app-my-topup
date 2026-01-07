@@ -34,7 +34,7 @@
       loop
       :breakpoints="{
         0: { slidesPerView: 1.5 },
-        640: { slidesPerView: 2 },
+        640: { slidesPerView: 2.4 },
         1024: { slidesPerView: 3 },
         1420: { slidesPerView: 4 },
       }"

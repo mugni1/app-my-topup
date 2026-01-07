@@ -40,7 +40,7 @@
       <b class="title"> <Gamepad2 class="size-5" /> Top Up Games </b>
     </div>
 
-    <div class="grid grid-cols-3 lg:grid-cols-6 gap-4">
+    <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
       <div v-for="game in games" :key="game.name" class="card-game">
         <img :src="game.img_url" class="w-full aspect-square object-cover" alt="" />
         <div class="px-2 lg:px-3 py-2">
