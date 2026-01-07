@@ -29,7 +29,7 @@
 </script>
 
 <template>
-  <header class="w-full fixed backdrop-blur-sm bg-card/70 border-b z-50">
+  <header class="w-full fixed backdrop-blur-sm bg-popover/70 border-b z-50">
     <nav class="container mx-auto">
       <div class="flex justify-between items-center gap-4 py-4 px-4">
         <!-- brand  -->
