@@ -1,7 +1,9 @@
 <script setup lang="ts">
   import { motion } from 'motion-v'
   import { Button } from '../ui/button'
-  import { CalendarClockIcon, Scale, ShoppingBag } from 'lucide-vue-next'
+  import { CalendarClockIcon, LogIn, Scale, Search, ShoppingBag } from 'lucide-vue-next'
+  import { Separator } from '../ui/separator'
+  import { InputGroup, InputGroupAddon, InputGroupInput } from '../ui/input-group'
 
   const isOpen = defineModel<boolean>()
 </script>
@@ -20,9 +22,18 @@
       :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -100 }"
       :transition="{ duration: 0.2 }"
     >
-      <Button variant="outline" class="w-full"><ShoppingBag /> Top Up</Button>
-      <Button variant="outline" class="w-full"><CalendarClockIcon /> Transaction </Button>
-      <Button variant="outline" class="w-full"><Scale /> Calculator </Button>
+      <InputGroup>
+        <InputGroupInput placeholder="Search..." />
+        <InputGroupAddon>
+          <Search />
+        </InputGroupAddon>
+      </InputGroup>
+      <Separator />
+      <Button variant="link" class="w-full"><ShoppingBag /> Top Up</Button>
+      <Button variant="ghost" class="w-full"><CalendarClockIcon /> Transaction </Button>
+      <Button variant="ghost" class="w-full"><Scale /> Calculator </Button>
+      <Separator />
+      <Button variant="primary_outline" class="w-full"><LogIn /> Login </Button>
     </motion.div>
   </motion.section>
 </template>

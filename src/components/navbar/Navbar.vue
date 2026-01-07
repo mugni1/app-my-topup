@@ -17,7 +17,7 @@
 </script>
 
 <template>
-  <header class="w-full fixed backdrop-blur-xs bg-card/70 border-b z-50">
+  <header class="w-full fixed backdrop-blur-sm bg-card/70 border-b z-50">
     <nav class="container mx-auto">
       <div class="flex justify-between items-center gap-4 py-4 px-4">
         <!-- brand  -->
@@ -40,12 +40,12 @@
       <!-- show on lg -->
       <div class="hidden lg:flex items-center justify-between w-full px-2">
         <div>
-          <Button variant="ghost" class="w-fit"> <ShoppingBag /> Top Up </Button>
+          <Button variant="link" class="w-fit"> <ShoppingBag /> Top Up </Button>
           <Button variant="ghost" class="w-fit"> <CalendarClockIcon /> Transaction </Button>
           <Button variant="ghost" class="w-fit"> <Scale /> Calculator </Button>
         </div>
         <div>
-          <Button variant="link" class="w-fit"> <LogIn /> Login </Button>
+          <Button variant="link" size="sm" class="w-fit"> <LogIn /> Login </Button>
         </div>
       </div>
     </nav>
