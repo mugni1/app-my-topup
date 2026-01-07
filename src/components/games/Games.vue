@@ -36,7 +36,7 @@
 
 <template>
   <section class="py-5 mx-auto container px-4">
-    <div class="w-full lg:w-6/12 flex flex-col gap-1 mb-4">
+    <div class="w-full lg:w-6/12 flex flex-col gap-1 mb-3">
       <b class="title"> <Gamepad2 class="size-5" /> Top Up Games </b>
     </div>
 
