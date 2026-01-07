@@ -22,13 +22,6 @@
       :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -100 }"
       :transition="{ duration: 0.2 }"
     >
-      <InputGroup>
-        <InputGroupInput placeholder="Search..." />
-        <InputGroupAddon>
-          <Search />
-        </InputGroupAddon>
-      </InputGroup>
-      <Separator />
       <Button variant="link" class="w-full"><ShoppingBag /> Top Up</Button>
       <Button variant="ghost" class="w-full"><CalendarClockIcon /> Transaction </Button>
       <Button variant="ghost" class="w-full"><Scale /> Calculator </Button>

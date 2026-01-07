@@ -33,7 +33,7 @@
       @slideChange="onSlideChange"
       loop
       :breakpoints="{
-        0: { slidesPerView: 1.3 },
+        0: { slidesPerView: 1.5 },
         640: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
         1420: { slidesPerView: 4 },
@@ -51,7 +51,7 @@
             <Separator />
             <div class="flex flex-col gap-1 pb-4">
               <p class="text-xs lg:text-sm font-medium text-start">Redaksi</p>
-              <p class="text-xs lg:text-sm font-medium text-start line-clamp-2">
+              <p class="text-xs lg:text-sm font-normal text-start line-clamp-2 text-primary">
                 Cara Mendapatkan Akun FF Sultan Gratis yang Aman (Metode Legal & Giveaway)
               </p>
             </div>
@@ -70,7 +70,7 @@
   }
 
   .description {
-    @apply text-xs lg:text-sm font-normal line-clamp-2;
+    @apply text-xs lg:text-sm text-muted-foreground font-normal line-clamp-2;
   }
 
   .card-article {
