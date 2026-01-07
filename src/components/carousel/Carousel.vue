@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
-  import { Separator } from '../ui/separator'
-  import { ChevronLeft, Newspaper, ChevronRight } from 'lucide-vue-next'
+  import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 
   const modules = [Navigation, Pagination, Mousewheel, Keyboard, Autoplay]
   const navigation = {
@@ -54,7 +53,7 @@
       <!-- SLIDE  -->
       <SwiperSlide v-for="(image, index) in images" :key="index">
         <img
-          class="w-full aspect-video lg:aspect-[9/3.4] object-cover object-center"
+          class="w-full aspect-[9/3.4] object-cover object-center"
           :src="image.url"
           :alt="'image' + index"
         />
