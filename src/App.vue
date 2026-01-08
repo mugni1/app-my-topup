@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <Navbar />
+  <Navbar v-if="$route.name != 'login'" />
   <RouterView />
-  <Footer />
+  <Footer v-if="$route.name != 'login'" />
 </template>
