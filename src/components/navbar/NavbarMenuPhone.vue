@@ -34,8 +34,8 @@
   >
     <motion.div
       class="container mx-auto bg-popover border rounded-md mt-24 p-4 space-y-4"
-      :initial="{ opacity: 0, y: 100 }"
-      :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 100 }"
+      :initial="{ opacity: 0, y: 200 }"
+      :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 200 }"
       :transition="{ duration: 0.3 }"
     >
       <Button
