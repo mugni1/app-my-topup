@@ -34,9 +34,9 @@
   >
     <motion.div
       class="container mx-auto bg-popover border rounded-md mt-24 p-4 space-y-4"
-      :initial="{ opacity: 0, y: -100 }"
-      :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -100 }"
-      :transition="{ duration: 0.2 }"
+      :initial="{ opacity: 0, y: 100 }"
+      :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 100 }"
+      :transition="{ duration: 0.3 }"
     >
       <Button
         v-for="link in data.links"

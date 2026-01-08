@@ -16,17 +16,17 @@
   <Button variant="outline" size="icon" @click="changeIsOpen">
     <motion.div
       class="absolute"
-      :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: !isOpen ? 1 : 0, y: !isOpen ? 0 : 20 }"
-      :transition="{ duration: 0.2 }"
+      :initial="{ opacity: 0, y: -20 }"
+      :animate="{ opacity: !isOpen ? 1 : 0, y: !isOpen ? 0 : -20 }"
+      :transition="{ duration: 0.3 }"
     >
       <Menu />
     </motion.div>
     <motion.div
       class="absolute"
-      :initial="{ opacity: 0, y: -20 }"
-      :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -20 }"
-      :transition="{ duration: 0.2 }"
+      :initial="{ opacity: 0, y: 20 }"
+      :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 20 }"
+      :transition="{ duration: 0.3 }"
     >
       <X />
     </motion.div>

@@ -27,9 +27,9 @@
   >
     <motion.div
       class="container mx-auto bg-popover border rounded-md mt-24 p-4 space-y-4"
-      :initial="{ opacity: 0, y: -100 }"
-      :animate="{ opacity: isSearch ? 1 : 0, y: isSearch ? 0 : -100 }"
-      :transition="{ duration: 0.2 }"
+      :initial="{ opacity: 0, y: 100 }"
+      :animate="{ opacity: isSearch ? 1 : 0, y: isSearch ? 0 : 100 }"
+      :transition="{ duration: 0.3 }"
     >
       <InputGroup>
         <InputGroupInput class="rounded-full" placeholder="Search..." />
@@ -49,10 +49,10 @@
   @import '../../assets/main.css';
 
   .container-open {
-    @apply fixed inset-0 z-40 px-4 lg:hidden backdrop-blur-sm transition-all duration-200;
+    @apply fixed inset-0 z-30 px-4 lg:hidden backdrop-blur-sm transition-all duration-200;
   }
 
   .container-close {
-    @apply invisible fixed inset-0 z-40 px-4 lg:hidden transition-all duration-200;
+    @apply invisible fixed inset-0 z-30 px-4 lg:hidden transition-all duration-200;
   }
 </style>
