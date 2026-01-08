@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import ProductList from '@/components/Cart/ProductList.vue'
-  import Summary from '@/components/Cart/Summary.vue'
+  import ProductList from '@/components/cart/ProductList.vue'
+  import Summary from '@/components/cart/Summary.vue'
   import { onMounted, reactive, ref, watch } from 'vue'
 
   // dumy
