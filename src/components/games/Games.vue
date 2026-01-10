@@ -33,7 +33,7 @@
   }
 
   .card-game {
-    @apply cursor-pointer overflow-hidden shadow-md rounded-md border bg-popover hover:rotate-2 hover:scale-105 transition-all duration-300;
+    @apply cursor-pointer overflow-hidden shadow-md rounded-md border bg-popover hover:rotate-2 hover:scale-105 hover:ring-2 hover:ring-primary transition-all duration-300;
   }
 
   .card-game-image {
