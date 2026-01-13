@@ -3,17 +3,19 @@
   import { Input } from '@/components/ui/input'
   import { Label } from '@/components/ui/label'
   import { Ticket } from 'lucide-vue-next'
-  import { ref, watch } from 'vue'
+  import { ref } from 'vue'
   import HeaderGame from '@/components/detail-game/HeaderGame.vue'
   import CardItem from '@/components/detail-game/CardItem.vue'
   import CardContainer from '@/components/detail-game/CardContainer.vue'
   import Summary from '@/components/detail-game/Summary.vue'
   import { useGetDetailGame } from '@/hooks/useGetDetailGame'
   import { useRoute } from 'vue-router'
+  import { Skeleton } from '@/components/ui/skeleton'
 
   // state
   const itemActive = ref<undefined | string>(undefined)
-  const id = ref<undefined | string>(undefined)
+  const inputVoucher = ref<undefined | string>(undefined)
+  const inputID = ref<undefined | string>(undefined)
   const server = ref<undefined | string>(undefined)
   const route = useRoute()
   const { data, isPending } = useGetDetailGame(route.params.id as string)
@@ -34,7 +36,7 @@
           <div class="w-full space-y-2">
             <Label>ID</Label>
             <Input
-              v-model="id"
+              v-model="inputID"
               type="number"
               class="font-normal"
               placeholder="Input ID"
@@ -51,28 +53,49 @@
           </div>
         </div>
       </CardContainer>
-      <CardContainer number="2" title="Select Item">
-        <div>
-          <!-- <b>Title</b> -->
+      <CardContainer
+        v-if="data?.data?.categories && !isPending"
+        number="2"
+        title="Select Item"
+      >
+        <div class="flex flex-col gap-3" v-for="category in data?.data?.categories">
+          <b>{{ category.name }}</b>
+          <div
+            v-if="category.items.length > 0"
+            class="grid grid-cols-2 md:grid-cols-3 gap-4"
+          >
+            <CardItem
+              v-for="item in category.items"
+              class="transition-all duration-300"
+              :class="item.id == itemActive && 'ring-2 ring-primary'"
+              @click="handleChangeItemActive(item.id)"
+              :id="item.id"
+              :title="item.name"
+              :price="item.price"
+              :image_url="item.imageUrl"
+              :key="item.id"
+            />
+          </div>
+          <div
+            v-else
+            class="w-full py-4 flex justify-center items-center border rounded-md"
+          >
+            <p class="text-center font-medium text-sm">Item not yet available</p>
+          </div>
+        </div>
+      </CardContainer>
+      <CardContainer v-if="isPending" number="2" title="Select Item">
+        <div class="flex flex-col gap-3">
+          <Skeleton class="max-w-xs h-6" />
           <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <!-- <CardItem
-            v-for="item in data?.data"
-            class="transition-all duration-300"
-            :class="item.id == itemActive && 'ring-2 ring-primary'"
-            @click="handleChangeItemActive(item.id)"
-            :id="item.id"
-            :title="item.title"
-            :price="item.price"
-            :image_url="item.image_url"
-            :key="item.id"
-          /> -->
+            <Skeleton v-for="item in 6" class="aspect-video" />
           </div>
         </div>
       </CardContainer>
       <CardContainer number="3" title="Voucher Code">
         <div class="w-full flex flex-col md:flex-wrap gap-4">
           <Input
-            v-model="id"
+            v-model="inputVoucher"
             type="text"
             class="font-normal col-span-3"
             placeholder="Input Voucher Code (Opsional)"
@@ -81,6 +104,8 @@
         </div>
       </CardContainer>
     </div>
+
+    <!-- summary tab and desktop  -->
     <Summary />
   </section>
 </template>

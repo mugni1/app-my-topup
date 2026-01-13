@@ -15,6 +15,6 @@
       </div>
       <div class="px-4 flex h-full items-center justify-center">{{ title }}</div>
     </div>
-    <div class="p-4 md:p-6"><slot></slot></div>
+    <div class="p-4 md:p-6 space-y-4"><slot></slot></div>
   </div>
 </template>

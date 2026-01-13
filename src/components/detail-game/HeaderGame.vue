@@ -34,8 +34,10 @@
         </div>
         <div class="w-5/12 md:w-3/12 lg:w-2/12"></div>
         <div class="space-y-1 md:space-y-2 md:ps-8">
-          <h3 class="title">{{ data?.title || 'Anonym Game' }}</h3>
-          <b class="studio">{{ data?.studio || 'Anonym Studio' }}</b>
+          <h3 class="title" v-if="!isPending">{{ data?.title || 'Anonym Game' }}</h3>
+          <h3 class="title" v-else>Loading title...</h3>
+          <b class="studio" v-if="!isPending">{{ data?.studio || 'Anonym Studio' }}</b>
+          <b class="studio" v-else>Loading studio...</b>
           <div class="content-large">
             <p class="row"><CloudLightningIcon class="size-4" /> Fast Process</p>
             <p class="row"><CheckCircleIcon class="size-4" /> Secure Payment</p>

@@ -12,7 +12,7 @@
 <template>
   <div class="main-container">
     <div class="header">
-      <span>{{ title }}</span>
+      <span class="text-xs md:text-base font-medium">{{ title }}</span>
       <div class="flex items-center gap-2 md:gap-5 pt-2">
         <img loading="lazy" :src="image_url" alt="logo" class="w-8 md:w-10" />
         <b class="price">Rp {{ price.toLocaleString('id-ID') }}</b>
