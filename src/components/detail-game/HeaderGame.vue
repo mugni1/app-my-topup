@@ -37,16 +37,16 @@
           <h3 class="title">{{ data?.title || 'Anonym Game' }}</h3>
           <b class="studio">{{ data?.studio || 'Anonym Studio' }}</b>
           <div class="content-large">
-            <p class="row"><CloudLightningIcon class="size-4" /> Proses Cepat</p>
-            <p class="row"><CheckCircleIcon class="size-4" /> Pembayaran Aman</p>
-            <p class="row"><MessageCircleMore class="size-4" /> Layanan Chat 24/7</p>
+            <p class="row"><CloudLightningIcon class="size-4" /> Fast Process</p>
+            <p class="row"><CheckCircleIcon class="size-4" /> Secure Payment</p>
+            <p class="row"><MessageCircleMore class="size-4" /> Customer Service 24/7</p>
           </div>
         </div>
       </div>
       <div class="content-phone">
-        <p class="row"><CloudLightningIcon class="size-4" /> Proses Cepat</p>
-        <p class="row"><CheckCircleIcon class="size-4" /> Pembayaran Aman</p>
-        <p class="row"><MessageCircleMore class="size-4" /> Layanan Chat 24/7</p>
+        <p class="row"><CloudLightningIcon class="size-4" /> Fast Process</p>
+        <p class="row"><CheckCircleIcon class="size-4" /> Secure Payment</p>
+        <p class="row"><MessageCircleMore class="size-4" /> CS 24/7</p>
       </div>
     </section>
   </section>
@@ -88,11 +88,11 @@
   }
 
   .title {
-    @apply text-base md:text-2xl line-clamp-1;
+    @apply text-base md:text-2xl font-semibold line-clamp-1;
   }
 
   .studio {
-    @apply text-base md:text-xl font-medium line-clamp-1;
+    @apply text-sm md:text-xl font-medium line-clamp-1;
   }
   .row {
     @apply flex gap-2;
