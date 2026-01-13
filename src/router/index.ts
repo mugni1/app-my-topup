@@ -20,7 +20,7 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomeView },
     { path: '/login', name: 'login', component: LoginView },
     { path: '/co', name: 'co_view', component: CoView },
-    { path: '/games/:name', name: 'games', component: GamesView },
+    { path: '/games/:id', name: 'games', component: GamesView },
     { path: '/success', name: 'payment_success', component: SuccessView },
     { path: '/:pathMatch(.*)*', name: 'not_found', component: NotFoundView },
   ],

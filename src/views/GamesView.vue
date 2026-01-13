@@ -3,17 +3,20 @@
   import { Input } from '@/components/ui/input'
   import { Label } from '@/components/ui/label'
   import { Ticket } from 'lucide-vue-next'
-  import { ref } from 'vue'
-  import { data } from '@/components/detail-game/data'
+  import { ref, watch } from 'vue'
   import HeaderGame from '@/components/detail-game/HeaderGame.vue'
   import CardItem from '@/components/detail-game/CardItem.vue'
   import CardContainer from '@/components/detail-game/CardContainer.vue'
   import Summary from '@/components/detail-game/Summary.vue'
+  import { useGetDetailGame } from '@/hooks/useGetDetailGame'
+  import { useRoute } from 'vue-router'
 
   // state
   const itemActive = ref<undefined | string>(undefined)
   const id = ref<undefined | string>(undefined)
   const server = ref<undefined | string>(undefined)
+  const route = useRoute()
+  const { data, isPending } = useGetDetailGame(route.params.id as string)
 
   // methods
   const handleChangeItemActive = (id: string) => {
@@ -22,7 +25,7 @@
 </script>
 
 <template>
-  <HeaderGame />
+  <HeaderGame :is-pending="isPending" :data="data?.data" />
   <section class="container mx-auto px-4 grid grid-cols-5 gap-4">
     <!-- product item -->
     <div class="col-span-5 lg:col-span-3 space-y-4">
@@ -49,9 +52,11 @@
         </div>
       </CardContainer>
       <CardContainer number="2" title="Select Item">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <CardItem
-            v-for="item in data.products"
+        <div>
+          <!-- <b>Title</b> -->
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- <CardItem
+            v-for="item in data?.data"
             class="transition-all duration-300"
             :class="item.id == itemActive && 'ring-2 ring-primary'"
             @click="handleChangeItemActive(item.id)"
@@ -60,7 +65,8 @@
             :price="item.price"
             :image_url="item.image_url"
             :key="item.id"
-          />
+          /> -->
+          </div>
         </div>
       </CardContainer>
       <CardContainer number="3" title="Voucher Code">

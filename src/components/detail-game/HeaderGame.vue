@@ -1,32 +1,41 @@
 <script setup lang="ts">
+  import type { GetDetailGame } from '@/types/games.type'
   import { CheckCircleIcon, CloudLightningIcon, MessageCircleMore } from 'lucide-vue-next'
-  import { data } from './data'
+  import { Skeleton } from '../ui/skeleton'
+
+  const props = defineProps<{
+    isPending: boolean
+    data: GetDetailGame | null | undefined
+  }>()
 </script>
 
 <template>
   <section class="main-content">
+    <Skeleton v-if="isPending" class="cover" />
     <img
+      v-else
       loading="lazy"
       decoding="async"
       class="cover"
       alt="cover-image"
-      :src="data.image_cover_url"
+      :src="data?.coverUrl || ''"
     />
     <section class="main-container">
       <div class="content">
-        <div class="profile-container">
+        <Skeleton v-if="isPending" class="profile-container" />
+        <div v-else class="profile-container">
           <img
             class="profile"
             loading="lazy"
             decoding="async"
             alt="image-profile"
-            :src="data.image_profile_url"
+            :src="data?.imageUrl || ''"
           />
         </div>
         <div class="w-5/12 md:w-3/12 lg:w-2/12"></div>
         <div class="space-y-1 md:space-y-2 md:ps-8">
-          <h3 class="title">{{ data.game_title }}</h3>
-          <b class="studio">{{ data.game_studio }}</b>
+          <h3 class="title">{{ data?.title || 'Anonym Game' }}</h3>
+          <b class="studio">{{ data?.studio || 'Anonym Studio' }}</b>
           <div class="content-large">
             <p class="row"><CloudLightningIcon class="size-4" /> Proses Cepat</p>
             <p class="row"><CheckCircleIcon class="size-4" /> Pembayaran Aman</p>
