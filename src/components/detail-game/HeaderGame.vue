@@ -45,7 +45,7 @@
   @import '../../assets/main.css';
 
   .main-content {
-    @apply w-full items-end pt-18 lg:pt-26 mb-4;
+    @apply w-full items-end mb-4;
   }
 
   .cover {

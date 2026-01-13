@@ -10,17 +10,10 @@
     nextEl: '.swiper-button-next-custom',
     prevEl: '.swiper-button-prev-custom',
   }
-
-  // const onSwiper = (swiper: any) => {
-  //   console.log('Swiper instance:', swiper)
-  // }
-  // const onSlideChange = () => {
-  //   console.log('slide change')
-  // }
 </script>
 
 <template>
-  <section class="pt-24 pb-5 lg:pt-35 mx-auto container px-4">
+  <section class="pb-4 pt-6 mx-auto container px-4">
     <Swiper
       :navigation="navigation"
       :mousewheel="true"

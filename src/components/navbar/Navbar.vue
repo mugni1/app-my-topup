@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import ChangeToggleMode from '../mode/ChangeToggleMode.vue'
   import ToggleBurger from './ToggleBurger.vue'
-  import { ref, watch } from 'vue'
+  import { ref } from 'vue'
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
   import ToggleSearch from './ToggleSearch.vue'
   import NavbarSearchPhone from './NavbarSearchPhone.vue'
@@ -42,7 +42,7 @@
 </script>
 
 <template>
-  <header class="w-full fixed backdrop-blur-sm bg-popover/70 border-b z-50">
+  <header class="w-full sticky top-0 backdrop-blur-sm bg-popover/70 border-b z-50">
     <nav class="container mx-auto">
       <div class="flex justify-between items-center gap-4 py-4 px-4">
         <RouterLink to="/">
@@ -50,20 +50,9 @@
         </RouterLink>
         <NavbarSearchLarge />
         <div class="space-x-2 relative flex items-center overflow-hidden">
-          <ChangeToggleMode
-            v-model="isOpenMode"
-            @change-is-open-mode="handleChangeIsOpenMode"
-          />
-          <ToggleSearch
-            class="lg:hidden"
-            v-model="isSearch"
-            @change-is-search="handleChangeIsSearch"
-          />
-          <ToggleBurger
-            class="lg:hidden"
-            v-model="isOpen"
-            @change-is-open="handleChangeIsOpen"
-          />
+          <ChangeToggleMode v-model="isOpenMode" @change-is-open-mode="handleChangeIsOpenMode" />
+          <ToggleSearch class="lg:hidden" v-model="isSearch" @change-is-search="handleChangeIsSearch" />
+          <ToggleBurger class="lg:hidden" v-model="isOpen" @change-is-open="handleChangeIsOpen" />
         </div>
       </div>
     </nav>
