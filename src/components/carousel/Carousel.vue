@@ -39,6 +39,8 @@
         <img
           class="w-full aspect-[9/3.4] object-cover object-center"
           loading="lazy"
+          decoding="async"
+          fetchpriority="low"
           :src="image.url"
           :alt="'image' + index"
         />
