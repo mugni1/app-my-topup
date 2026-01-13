@@ -4,7 +4,6 @@
   import { Label } from '@/components/ui/label'
   import { Ticket } from 'lucide-vue-next'
   import { ref } from 'vue'
-  import HeaderGame from '@/components/detail-game/HeaderGame.vue'
   import CardItem from '@/components/detail-game/CardItem.vue'
   import CardContainer from '@/components/detail-game/CardContainer.vue'
   import Summary from '@/components/detail-game/Summary.vue'
