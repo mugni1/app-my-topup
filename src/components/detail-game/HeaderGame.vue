@@ -11,33 +11,20 @@
 
 <template>
   <section class="main-content">
-    <Skeleton v-if="isPending" class="cover" />
-    <img
-      v-else
-      loading="lazy"
-      decoding="async"
-      class="cover"
-      alt="cover-image"
-      :src="data?.coverUrl || ''"
-    />
+    <Skeleton v-if="isPending" class="cover rounded-none" />
+    <img v-else loading="lazy" decoding="async" class="cover" alt="cover-image" :src="data?.coverUrl || ''" />
     <section class="main-container">
       <div class="content">
         <Skeleton v-if="isPending" class="profile-container" />
         <div v-else class="profile-container">
-          <img
-            class="profile"
-            loading="lazy"
-            decoding="async"
-            alt="image-profile"
-            :src="data?.imageUrl || ''"
-          />
+          <img class="profile" loading="lazy" decoding="async" alt="image-profile" :src="data?.imageUrl || ''" />
         </div>
         <div class="w-5/12 md:w-3/12 lg:w-2/12"></div>
         <div class="space-y-1 md:space-y-2 md:ps-8">
           <h3 class="title" v-if="!isPending">{{ data?.title || 'Anonym Game' }}</h3>
-          <h3 class="title" v-else>Loading title...</h3>
+          <Skeleton class="max-w-md h-9" v-else />
           <b class="studio" v-if="!isPending">{{ data?.studio || 'Anonym Studio' }}</b>
-          <b class="studio" v-else>Loading studio...</b>
+          <Skeleton class="max-w-sm h-7" v-else />
           <div class="content-large">
             <p class="row"><CloudLightningIcon class="size-4" /> Fast Process</p>
             <p class="row"><CheckCircleIcon class="size-4" /> Secure Payment</p>

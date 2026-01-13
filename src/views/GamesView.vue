@@ -29,46 +29,34 @@
 <template>
   <HeaderGame :is-pending="isPending" :data="data?.data" />
   <section class="container mx-auto px-4 grid grid-cols-5 gap-4">
-    <!-- product item -->
     <div class="col-span-5 lg:col-span-3 space-y-4">
       <CardContainer number="1" title="Input Information Account">
         <div class="flex flex-col md:flex-row items-center gap-4">
           <div class="w-full space-y-2">
             <Label>ID</Label>
-            <Input
-              v-model="inputID"
-              type="number"
-              class="font-normal"
-              placeholder="Input ID"
-            />
+            <Input v-model="inputID" type="number" class="font-normal" placeholder="Input ID" />
           </div>
           <div class="w-full space-y-2">
             <Label>Server</Label>
-            <Input
-              v-model="server"
-              type="number"
-              class="font-normal"
-              placeholder="Input Server"
-            />
+            <Input v-model="server" type="number" class="font-normal" placeholder="Input Server" />
           </div>
         </div>
       </CardContainer>
-      <CardContainer
-        v-if="data?.data?.categories && !isPending"
-        number="2"
-        title="Select Item"
-      >
-        <div class="flex flex-col gap-3" v-for="category in data?.data?.categories">
+
+      <CardContainer title="Select Item" number="2">
+        <div
+          class="wraped-category-and-product"
+          v-if="data?.data?.categories && data.data.categories.length > 0 && !isPending"
+          v-for="category in data.data.categories"
+          :key="category.id"
+        >
           <b>{{ category.name }}</b>
-          <div
-            v-if="category.items.length > 0"
-            class="grid grid-cols-2 md:grid-cols-3 gap-4"
-          >
+          <div v-if="category.items.length > 0" class="wraped-product">
             <CardItem
               v-for="item in category.items"
+              @click="handleChangeItemActive(item.id)"
               class="transition-all duration-300"
               :class="item.id == itemActive && 'ring-2 ring-primary'"
-              @click="handleChangeItemActive(item.id)"
               :id="item.id"
               :title="item.name"
               :price="item.price"
@@ -76,22 +64,26 @@
               :key="item.id"
             />
           </div>
-          <div
-            v-else
-            class="w-full py-4 flex justify-center items-center border rounded-md"
-          >
+          <div v-else class="wraped-no-product">
             <p class="text-center font-medium text-sm">Item not yet available</p>
           </div>
         </div>
-      </CardContainer>
-      <CardContainer v-if="isPending" number="2" title="Select Item">
-        <div class="flex flex-col gap-3">
-          <Skeleton class="max-w-xs h-6" />
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <Skeleton v-for="item in 6" class="aspect-video" />
+        <div
+          class="wraped-category-and-product"
+          v-else-if="data?.data?.categories && data.data.categories.length < 1 && !isPending"
+        >
+          <div class="wraped-no-product">
+            <p class="text-center font-medium text-sm">Category and Item not yet available</p>
+          </div>
+        </div>
+        <div class="wraped-category-and-product" v-else>
+          <Skeleton class="max-w-sm h-8" />
+          <div class="wraped-product">
+            <Skeleton class="aspect-video" v-for="_ in 6" />
           </div>
         </div>
       </CardContainer>
+
       <CardContainer number="3" title="Voucher Code">
         <div class="w-full flex flex-col md:flex-wrap gap-4">
           <Input
@@ -104,8 +96,6 @@
         </div>
       </CardContainer>
     </div>
-
-    <!-- summary tab and desktop  -->
     <Summary />
   </section>
 </template>
@@ -113,15 +103,15 @@
 <style scoped>
   @import '../assets/main.css';
 
-  .content {
-    @apply container mx-auto px-4 flex items-center relative py-4;
+  .wraped-category-and-product {
+    @apply flex flex-col gap-3;
   }
 
-  .content-phone {
-    @apply container mx-auto px-4 flex flex-wrap md:hidden items-center relative gap-4 text-xs font-normal pb-4;
+  .wraped-product {
+    @apply grid grid-cols-2 md:grid-cols-3 gap-4;
   }
 
-  .image-square {
-    @apply border w-4/12 md:w-3/12 lg:w-2/12 aspect-square absolute bottom-4 md:bottom-8 rounded-md overflow-hidden object-cover object-center;
+  .wraped-no-product {
+    @apply w-full py-4 flex justify-center items-center border-dashed border rounded-md;
   }
 </style>
