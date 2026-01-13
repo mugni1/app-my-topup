@@ -11,6 +11,7 @@
   import { useGetDetailGame } from '@/hooks/useGetDetailGame'
   import { useRoute } from 'vue-router'
   import { Skeleton } from '@/components/ui/skeleton'
+  import Header from '@/components/detail-game/Header.vue'
 
   // state
   const itemActive = ref<undefined | string>(undefined)
@@ -27,7 +28,7 @@
 </script>
 
 <template>
-  <HeaderGame :is-pending="isPending" :data="data?.data" />
+  <Header :is-pending="isPending" :data="data?.data" />
   <section class="container mx-auto px-4 grid grid-cols-5 gap-4">
     <div class="col-span-5 lg:col-span-3 space-y-4">
       <CardContainer number="1" title="Input Information Account">

@@ -10,8 +10,5 @@
 </script>
 
 <template>
-  <div
-    data-slot="skeleton"
-    :class="cn('animate-pulse rounded-md bg-primary/50', props.class)"
-  />
+  <div data-slot="skeleton" :class="cn('animate-pulse rounded-md bg-secondary', props.class)" />
 </template>
