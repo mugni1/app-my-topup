@@ -1,29 +1,96 @@
 <script setup lang="ts">
   import { Gamepad2 } from 'lucide-vue-next'
-  import { data } from './dumy'
   import { RouterLink } from 'vue-router'
+  import { useGetGames } from '@/hooks/useGetGames'
+  import { computed, ref, watch, type Ref } from 'vue'
+  import type { GetParamsType } from '@/types/global.type'
+  import type { GetGameType } from '@/types/games.type'
+  import { Button } from '../ui/button'
+  import { useWindowSize } from '@/libs/window-size'
+  import { Skeleton } from '../ui/skeleton'
+
+  const { width } = useWindowSize()
+  const games = ref<GetGameType[]>([])
+  const page = ref<number>(1)
+  const limit = ref<number>(7)
+  const isMobile = computed(() => width.value > 0 && width.value < 768)
+  const isPad = computed(() => width.value >= 768 && width.value < 1024)
+  const params: Ref<GetParamsType> = computed(() => ({
+    limit: limit.value,
+    page: page.value,
+    orderBy: 'createdAt',
+    sortBy: 'desc',
+    search: '',
+  }))
+  const { isPending, data } = useGetGames(params)
+
+  // methods
+  const nextGames = () => {
+    page.value++
+  }
+
+  // watcher
+  watch(data, (newValue) => {
+    if (page.value === 1) {
+      games.value = newValue?.data || []
+    } else {
+      games.value = [...games.value, ...(newValue?.data || [])]
+    }
+  })
+  watch(
+    width,
+    () => {
+      page.value = 1
+      games.value = []
+      if (isMobile.value) {
+        limit.value = 6
+      } else if (isPad.value) {
+        limit.value = 10
+      } else {
+        limit.value = 14
+      }
+    },
+    { immediate: true }
+  )
 </script>
 
 <template>
   <section class="py-5 mx-auto container px-4">
     <span class="title"> <Gamepad2 class="size-6" /> TOP UP GAMES</span>
-    <div class="container-game">
-      <div v-for="(game, i) in data.games" :key="game.name" class="card-game">
-        <RouterLink :to="`/games/${game.name}`">
+
+    <!-- games -->
+    <div class="container-game mb-4" v-if="games.length > 1">
+      <div v-for="(game, i) in games" :key="game.id" class="card-game">
+        <RouterLink :to="`/games/${game.id}`">
           <img
             class="card-game-image"
-            :src="game.img_url"
+            :src="game.imageUrl"
             :alt="'image' + i"
             loading="lazy"
             decoding="async"
             fetchpriority="low"
           />
           <div class="px-2 lg:px-3 py-2">
-            <b class="card-game-title">{{ game.name }}</b>
+            <b class="card-game-title">{{ game.title }}</b>
             <p class="card-game-description">{{ game.studio }}</p>
           </div>
         </RouterLink>
       </div>
+    </div>
+
+    <!-- skeleton  -->
+    <div class="container-game" v-if="isPending">
+      <div v-for="value in limit">
+        <Skeleton class="aspect-[10/12.5]" />
+      </div>
+    </div>
+
+    <!-- button show -->
+    <div
+      class="w-full flex items-center justify-center"
+      v-if="!isPending && games.length != data?.meta?.total"
+    >
+      <Button variant="outline" @click="nextGames"> Show Another Game </Button>
     </div>
   </section>
 </template>

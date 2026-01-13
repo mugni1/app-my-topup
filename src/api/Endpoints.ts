@@ -5,4 +5,5 @@ export const API_VERSION = {
 export const ENDPOINT = {
   PAYMENT: `/payment`,
   LOGIN: `/auth/login`,
+  GAME: `/game`,
 }

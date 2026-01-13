@@ -3,6 +3,8 @@ import { ENDPOINT } from './Endpoints'
 import { httpClient } from './HttpClient'
 import type { PostPaymentPayload, PostPaymentResponse } from '@/types/payment.type';
 import type { PostLoginPayload, PostLoginResponse } from '@/types/auth';
+import type { GetParamsType } from '@/types/global.type';
+import type { GetGamesResponse } from '@/types/games.type';
 
 // PAYMENT SERVICES
 export const postPaymentService = async (payload: PostPaymentPayload): Promise<AxiosResponse<PostPaymentResponse>> => {
@@ -12,4 +14,9 @@ export const postPaymentService = async (payload: PostPaymentPayload): Promise<A
 // AUTH SERVICE
 export const postLoginService = async (payload: PostLoginPayload): Promise<AxiosResponse<PostLoginResponse>> => {
   return httpClient.post(ENDPOINT.LOGIN, payload)
+}
+
+// GET GAMES SERVICE
+export const getGamesService = async (params: GetParamsType): Promise<AxiosResponse<GetGamesResponse>> => {
+  return httpClient.get(ENDPOINT.GAME, { params })
 }
