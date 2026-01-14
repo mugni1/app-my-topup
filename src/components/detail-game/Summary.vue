@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { Separator } from '@/components/ui/separator'
   import { onMounted, ref } from 'vue'
-  import { RouterLink } from 'vue-router'
+  import { RouterLink, useRoute } from 'vue-router'
   import { Headphones, LogInIcon, ShoppingBag } from 'lucide-vue-next'
   import Cookies from 'js-cookie'
   import { data } from './data'
@@ -9,6 +9,8 @@
 
   // state
   const isLogin = ref<boolean>(false)
+  const route = useRoute()
+  const gamesPath = btoa(route.path)
 
   // mounted
   onMounted(() => {
@@ -63,13 +65,9 @@
           <p class="font-bold text-primary text-lg">Rp 200000</p>
         </div>
       </div>
-      <Button v-if="isLogin" class="w-full text-background font-bold">
-        <ShoppingBag /> Checkout Now
-      </Button>
-      <RouterLink v-else to="/login">
-        <Button class="w-full text-background font-bold">
-          <LogInIcon />Login To Continue
-        </Button>
+      <Button v-if="isLogin" class="w-full text-background font-bold"> <ShoppingBag /> Checkout Now </Button>
+      <RouterLink v-else :to="`/login?redirect=${gamesPath}`">
+        <Button class="w-full text-background font-bold"> <LogInIcon />Login To Continue</Button>
       </RouterLink>
     </div>
   </div>

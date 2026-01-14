@@ -1,8 +1,6 @@
 <script setup lang="ts">
-  import { Button } from '@/components/ui/button'
   import { data } from '../components/form/data'
   import LoginForm from '@/components/form/LoginForm.vue'
-  import { X } from 'lucide-vue-next'
 </script>
 
 <template>

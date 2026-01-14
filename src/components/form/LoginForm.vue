@@ -4,18 +4,13 @@
   import IconGoogle from '@/icons/IconGoogle.vue'
   import { cn } from '@/lib/utils'
   import { Button } from '@/components/ui/button'
-  import {
-    Field,
-    FieldDescription,
-    FieldGroup,
-    FieldSeparator,
-  } from '@/components/ui/field'
+  import { Field, FieldDescription, FieldGroup, FieldSeparator } from '@/components/ui/field'
   import { Input } from '@/components/ui/input'
   import { data } from './data'
   import { useForm } from 'vee-validate'
   import { loginSchema } from '@/validation/login'
   import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
-  import { RouterLink, useRouter } from 'vue-router'
+  import { RouterLink, useRoute, useRouter } from 'vue-router'
   import { usePostLogin } from '@/hooks/usePostLogin'
   import { Loader2Icon } from 'lucide-vue-next'
   import { toast } from 'vue-sonner'
@@ -25,6 +20,8 @@
 
   // state
   const router = useRouter()
+  const route = useRoute()
+  const redirectPath = route.query.redirect
   const { mutateAsync, isPending } = usePostLogin()
   const { setUser } = useAuthStore()
   const props = defineProps<{
@@ -48,7 +45,11 @@
         Cookies.set('token', results.data?.token || '')
         setUser(results.data?.user || undefined)
         toast.success(results.message, { action: { label: 'close' } })
-        router.push('/')
+        if (redirectPath) {
+          router.push(atob(redirectPath as string))
+        } else {
+          router.push('/')
+        }
       } else {
         toast.error(results.message, { action: { label: 'close' } })
       }

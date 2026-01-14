@@ -3,7 +3,7 @@
   import { CheckCircleIcon, CloudLightningIcon, MessageCircleMore } from 'lucide-vue-next'
   import { Skeleton } from '../ui/skeleton'
 
-  const props = defineProps<{
+  defineProps<{
     isPending: boolean
     data: GetDetailGame | null | undefined
   }>()
