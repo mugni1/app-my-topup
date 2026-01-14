@@ -2,19 +2,22 @@
   import ChangeToggleMode from '../mode/ChangeToggleMode.vue'
   import ToggleBurger from './ToggleBurger.vue'
   import { ref } from 'vue'
+  import { RouterLink, useRouter } from 'vue-router'
+  import { Separator } from '../ui/separator'
+  import { data } from './data'
+  import Cookies from 'js-cookie'
+  import NavbarSearchLarge from './NavbarSearchLarge.vue'
+  import NavbarMenuLarge from './NavbarMenuLarge.vue'
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
   import ToggleSearch from './ToggleSearch.vue'
   import NavbarSearchPhone from './NavbarSearchPhone.vue'
-  import { Separator } from '../ui/separator'
-  import { data } from './data'
-  import NavbarSearchLarge from './NavbarSearchLarge.vue'
-  import NavbarMenuLarge from './NavbarMenuLarge.vue'
-  import { RouterLink } from 'vue-router'
 
   // state
   const isOpen = ref(false)
   const isSearch = ref(false)
   const isOpenMode = ref(false)
+  const token = Cookies.get('token')
+  const router = useRouter()
 
   // methods
   const handleChangeIsOpen = (value: boolean) => {
@@ -32,12 +35,15 @@
     isSearch.value = value
   }
   const handleChangeIsOpenMode = (value: boolean) => {
-    console.log(value)
     if (value) {
       isSearch.value = false
       isOpen.value = false
     }
     isOpenMode.value = value
+  }
+  const handleLogout = () => {
+    Cookies.remove('token')
+    router.push({ name: 'login' })
   }
 </script>
 
@@ -57,9 +63,9 @@
       </div>
     </nav>
     <Separator class="hidden lg:block" />
-    <NavbarMenuLarge />
+    <NavbarMenuLarge :token="token" @on-logout="handleLogout" />
   </header>
 
-  <NavbarMenuPhone v-model="isOpen" />
+  <NavbarMenuPhone :token="token" @on-logout="handleLogout" v-model="isOpen" />
   <NavbarSearchPhone v-model="isSearch" />
 </template>
