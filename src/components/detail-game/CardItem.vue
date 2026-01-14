@@ -30,7 +30,7 @@
   @import '../../assets/main.css';
 
   .main-container {
-    @apply bg-muted rounded-md overflow-hidden border cursor-pointer;
+    @apply bg-muted rounded-md overflow-hidden border cursor-pointer flex flex-col justify-between;
   }
 
   .header {
