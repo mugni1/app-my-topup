@@ -39,6 +39,6 @@
     @apply container w-full h-full mx-auto p-4 space-y-4;
   }
   .not-have-product {
-    @apply font-normal text-xs flex justify-center items-center w-full p-4 border border-dashed rounded-md;
+    @apply font-normal text-sm flex justify-center items-center w-full p-4 border border-dashed rounded-md;
   }
 </style>

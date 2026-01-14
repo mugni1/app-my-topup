@@ -52,7 +52,7 @@
         v-if="data?.data?.categories && data.data.categories.length > 0 && !isPending"
       >
         <div class="wraped-category-and-product" v-for="category in data.data.categories" :key="category.id">
-          <b>{{ category.name }}</b>
+          <b class="font-medium text-base">{{ category.name }}</b>
           <div v-if="category.items.length > 0" class="wraped-product">
             <CardItem
               v-for="item in category.items"
