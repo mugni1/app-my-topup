@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { computed, ref } from 'vue'
   import { useRoute } from 'vue-router'
   import { Ticket } from 'lucide-vue-next'
   import { Button } from '@/components/ui/button'
@@ -7,26 +7,39 @@
   import { Label } from '@/components/ui/label'
   import { useGetDetailGame } from '@/hooks/useGetDetailGame'
   import { Skeleton } from '@/components/ui/skeleton'
+  import type { GetDetailGameCategoryItem } from '@/types/games.type'
   import Cookies from 'js-cookie'
   import Header from '@/components/detail-game/Header.vue'
   import CardContainer from '@/components/detail-game/CardContainer.vue'
   import CardItem from '@/components/detail-game/CardItem.vue'
   import Summary from '@/components/detail-game/Summary.vue'
   import SummarySmall from '@/components/detail-game/SummarySmall.vue'
-  import type { GetDetailGameCategoryItem } from '@/types/games.type'
+  import { toast } from 'vue-sonner'
 
-  // state
+  // STATE
   const itemActive = ref<undefined | GetDetailGameCategoryItem>(undefined)
   const inputVoucher = ref<undefined | string>(undefined)
   const inputID = ref<undefined | string>(undefined)
-  const server = ref<undefined | string>(undefined)
+  const inputServer = ref<undefined | string>(undefined)
   const token = Cookies.get('token')
   const route = useRoute()
   const { data, isPending } = useGetDetailGame(route.params.id as string)
+  const disabled = computed(() => {
+    const hasID = !!inputID.value
+    const hasItem = !!itemActive.value
+    const hasServer = !!inputServer.value
+    return !(hasID && hasItem && hasServer)
+  })
 
-  // methods
+  // METHODS
   const handleChangeItemActive = (item: GetDetailGameCategoryItem) => {
     itemActive.value = item
+  }
+  const handleCheckOut = () => {
+    if (!inputID.value && !inputServer.value && !inputServer.value) {
+      toast.error('Please complete the form', { action: { label: 'close' } })
+      return
+    }
   }
 </script>
 
@@ -42,11 +55,10 @@
           </div>
           <div class="w-full space-y-2">
             <Label>Server</Label>
-            <Input v-model="server" type="number" class="font-normal" placeholder="Input Server" />
+            <Input v-model="inputServer" type="number" class="font-normal" placeholder="Input Server" />
           </div>
         </div>
       </CardContainer>
-
       <CardContainer
         title="Select Item"
         number="2"
@@ -91,7 +103,6 @@
           </div>
         </div>
       </CardContainer>
-
       <CardContainer number="3" title="Voucher Code">
         <div class="wraped-input-voucher">
           <Input
@@ -106,7 +117,13 @@
     </div>
     <Summary />
   </section>
-  <SummarySmall :title="data?.data?.title || ''" :item="itemActive" :token="token" />
+  <SummarySmall
+    @on-checkout="handleCheckOut"
+    :disabled="disabled"
+    :title="data?.data?.title || ''"
+    :item="itemActive"
+    :token="token"
+  />
 </template>
 
 <style scoped>

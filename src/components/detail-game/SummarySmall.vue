@@ -8,9 +8,13 @@
 
   // state
   const props = defineProps<{
+    disabled: boolean
     token: string | undefined
     title: string
     item: GetDetailGameCategoryItem | undefined
+  }>()
+  const emits = defineEmits<{
+    (e: 'onCheckout'): void
   }>()
   const route = useRoute()
   const router = useRouter()
@@ -19,6 +23,9 @@
   const handleLogin = () => {
     const path = btoa(route.path)
     router.push(`/login?redirect=${path}`)
+  }
+  const handleCheckout = () => {
+    emits('onCheckout')
   }
 </script>
 
@@ -58,8 +65,12 @@
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <Button v-if="token" class="w-full"> <ShoppingBag /> Checkout now </Button>
-      <Button v-if="!token" @click="handleLogin" class="w-full"> <LogIn /> Please login to continue </Button>
+      <Button v-if="token" class="w-full" :disabled="disabled" @click="handleCheckout">
+        <ShoppingBag /> Checkout now
+      </Button>
+      <Button v-if="!token" class="w-full" :disabled="false" @click="handleLogin">
+        <LogIn /> Please login to continue
+      </Button>
     </div>
   </section>
 </template>
