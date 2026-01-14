@@ -33,7 +33,7 @@
   <Header :is-pending="isPending" :data="data?.data" />
   <section class="container mx-auto px-4 grid grid-cols-5 gap-4">
     <div class="col-span-5 lg:col-span-3 space-y-4">
-      <CardContainer number="1" title="Input Information Account">
+      <CardContainer number="1" title="Input Information">
         <div class="wraped-input-id">
           <div class="w-full space-y-2">
             <Label>ID</Label>
