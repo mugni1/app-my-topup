@@ -22,7 +22,7 @@ export interface GetGamesResponse {
   errors: null
 }
 
-interface GetDetailGameCategoryItem {
+export interface GetDetailGameCategoryItem {
   id: string
   name: string
   merchantName: string

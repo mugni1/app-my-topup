@@ -13,9 +13,10 @@
   import CardItem from '@/components/detail-game/CardItem.vue'
   import Summary from '@/components/detail-game/Summary.vue'
   import SummarySmall from '@/components/detail-game/SummarySmall.vue'
+  import type { GetDetailGameCategoryItem } from '@/types/games.type'
 
   // state
-  const itemActive = ref<undefined | string>(undefined)
+  const itemActive = ref<undefined | GetDetailGameCategoryItem>(undefined)
   const inputVoucher = ref<undefined | string>(undefined)
   const inputID = ref<undefined | string>(undefined)
   const server = ref<undefined | string>(undefined)
@@ -24,8 +25,8 @@
   const { data, isPending } = useGetDetailGame(route.params.id as string)
 
   // methods
-  const handleChangeItemActive = (id: string) => {
-    itemActive.value = id
+  const handleChangeItemActive = (item: GetDetailGameCategoryItem) => {
+    itemActive.value = item
   }
 </script>
 
@@ -56,9 +57,9 @@
           <div v-if="category.items.length > 0" class="wraped-product">
             <CardItem
               v-for="item in category.items"
-              @click="handleChangeItemActive(item.id)"
+              @click="handleChangeItemActive(item)"
               class="transition-all duration-300"
-              :class="item.id == itemActive && 'ring-2 ring-primary'"
+              :class="item.id == itemActive?.id && 'ring-2 ring-primary'"
               :id="item.id"
               :title="item.name"
               :price="item.price"
@@ -105,7 +106,7 @@
     </div>
     <Summary />
   </section>
-  <SummarySmall :token="token" />
+  <SummarySmall :title="data?.data?.title || ''" :item="itemActive" :token="token" />
 </template>
 
 <style scoped>
