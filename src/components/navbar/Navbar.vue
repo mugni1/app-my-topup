@@ -11,8 +11,10 @@
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
   import ToggleSearch from './ToggleSearch.vue'
   import NavbarSearchPhone from './NavbarSearchPhone.vue'
+  import { useAuthStore } from '@/stores/auth'
 
   // state
+  const { removeUser } = useAuthStore()
   const isOpen = ref(false)
   const isSearch = ref(false)
   const isOpenMode = ref(false)
@@ -43,6 +45,7 @@
   }
   const handleLogout = () => {
     Cookies.remove('token')
+    removeUser()
     router.push({ name: 'login' })
   }
 </script>

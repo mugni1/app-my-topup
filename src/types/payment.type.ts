@@ -1,12 +1,15 @@
 import type { HttpStatusCode } from "axios"
 
+export interface PostPaymentData {
+  token: string
+  redirect_url: string
+  id: string
+  trx_id: string
+}
 export interface PostPaymentResponse {
   status: HttpStatusCode
   message: string
-  data: {
-    token: string
-    redirect_url: string
-  } | null
+  data: PostPaymentData | null
   meta: null
   errors: null
 }

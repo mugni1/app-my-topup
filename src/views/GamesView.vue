@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed, ref } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
   import { toast } from 'vue-sonner'
   import { Ticket } from 'lucide-vue-next'
   import { Button } from '@/components/ui/button'
@@ -10,7 +10,6 @@
   import { useGetDetailGame } from '@/hooks/useGetDetailGame'
   import { Skeleton } from '@/components/ui/skeleton'
   import type { GetDetailGameCategoryItem } from '@/types/games.type'
-  import type { PostPaymentResponse } from '@/types/payment.type'
   import Cookies from 'js-cookie'
   import Header from '@/components/detail-game/Header.vue'
   import CardContainer from '@/components/detail-game/CardContainer.vue'
@@ -19,9 +18,12 @@
   import SummarySmall from '@/components/detail-game/SummarySmall.vue'
   import { HttpStatusCode } from 'axios'
   import { loadMidtrans } from '@/libs/midtrans'
+  import { useOrderStore } from '@/stores/order'
 
   // STATE
   const route = useRoute()
+  const router = useRouter()
+  const { setOrderDetail } = useOrderStore()
   const { mutateAsync, isPending: isPendingPayment } = usePostPayment()
   const { data: game, isPending: isPendingGame } = useGetDetailGame(route.params.id as string)
   const itemActive = ref<undefined | GetDetailGameCategoryItem>(undefined)
@@ -47,7 +49,7 @@
       return
     }
     try {
-      const result = await mutateAsync({
+      const payload = {
         destination: `${inputID.value} (${inputServer.value})`,
         item_details: [
           {
@@ -58,11 +60,14 @@
             quantity: itemActive.value?.quantity || 0,
           },
         ],
-      })
+      }
+      const result = await mutateAsync(payload)
       if (result.status != HttpStatusCode.Ok) {
         toast.error(result.message, { action: { label: 'close' } })
       } else {
         toast.success(result.message, { action: { label: 'close' } })
+        setOrderDetail(result.data)
+        router.push('/order-detail')
         window.snap.pay(result.data?.token || '', {
           onSuccess: function (result: any) {
             console.log('SUCCESS', result)
@@ -78,8 +83,7 @@
           },
         })
       }
-    } catch (err: unknown) {
-      const error = err as PostPaymentResponse
+    } catch {
       toast.error('Please try again later', { action: { label: 'close' } })
     }
   }
